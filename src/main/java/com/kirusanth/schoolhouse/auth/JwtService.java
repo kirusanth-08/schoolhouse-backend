@@ -47,7 +47,7 @@ public class JwtService {
         try {
           return Decoders.BASE64URL.decode(s);
         } catch (DecodingException e2) {
-          // fall through to raw bytes
+          // fall through
         }
       }
     }
