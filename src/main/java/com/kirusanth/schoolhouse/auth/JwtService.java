@@ -35,12 +35,11 @@ public class JwtService {
   private static byte[] resolveKeyBytes(String secret) {
     String s = secret;
     boolean prefixed = false;
-    if (s.startsWith("base64:")) {
+    if (s != null && s.startsWith("base64:")) {
       s = s.substring("base64:".length());
       prefixed = true;
     }
 
-    // If explicitly prefixed, try Base64 then Base64URL; on failure, fall back to raw bytes.
     if (prefixed) {
       try {
         return Decoders.BASE64.decode(s);
@@ -48,12 +47,10 @@ public class JwtService {
         try {
           return Decoders.BASE64URL.decode(s);
         } catch (DecodingException e2) {
-          // fall through to raw
+          // fall through to raw bytes
         }
       }
     }
-
-    // Not prefixed (or decode failed) -> treat as raw text secret
     return s.getBytes(StandardCharsets.UTF_8);
   }
 

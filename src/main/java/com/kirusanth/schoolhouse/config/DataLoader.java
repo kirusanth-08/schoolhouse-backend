@@ -5,6 +5,9 @@ import com.kirusanth.schoolhouse.library.BookRepository;
 import com.kirusanth.schoolhouse.library.BookStatus;
 import com.kirusanth.schoolhouse.user.User;
 import com.kirusanth.schoolhouse.user.UserRepository;
+import com.kirusanth.schoolhouse.assignments.Assignment;
+import com.kirusanth.schoolhouse.assignments.AssignmentRepository;
+import com.kirusanth.schoolhouse.assignments.AssignmentStatus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,6 +74,34 @@ public class DataLoader {
         admin.setPasswordHash(encoder.encode("admin123"));
         users.save(admin);
       }
+    };
+  }
+
+  @Bean
+  CommandLineRunner seedAssignments(AssignmentRepository repo) {
+    return args -> {
+      if (repo.count() > 0) return;
+      Assignment a1 = new Assignment();
+      a1.setTitle("Algebra Problem Set 3");
+      a1.setSubject("Mathematics");
+      a1.setDescription("Complete problems 1-20 on page 45");
+      a1.setPoints(100);
+      a1.setTotalStudents(25);
+      a1.setSubmissions(18);
+      a1.setStatus(AssignmentStatus.active);
+      a1.setDueDate(java.time.LocalDate.now().plusDays(7));
+
+      Assignment a2 = new Assignment();
+      a2.setTitle("History Essay");
+      a2.setSubject("History");
+      a2.setDescription("Write a 5-page essay on the Industrial Revolution");
+      a2.setPoints(150);
+      a2.setTotalStudents(25);
+      a2.setSubmissions(22);
+      a2.setStatus(AssignmentStatus.overdue);
+      a2.setDueDate(java.time.LocalDate.now().minusDays(2));
+
+      repo.saveAll(java.util.List.of(a1, a2));
     };
   }
 }
