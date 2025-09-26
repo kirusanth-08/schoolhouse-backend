@@ -2,6 +2,7 @@ package com.kirusanth.schoolhouse.auth;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.io.DecodingException;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,7 @@ public class JwtService {
       @Value("${app.jwt.secret}") String secret,
       @Value("${app.jwt.expiration-ms:2592000000}") long expirationMs) {
 
-    byte[] keyBytes;
-    if (secret.startsWith("base64:")) {
-      // Allow explicitly base64-encoded secrets via prefix
-      String b64 = secret.substring("base64:".length());
-      keyBytes = Decoders.BASE64.decode(b64);
-    } else {
-      // Treat as raw text secret
-      keyBytes = secret.getBytes(StandardCharsets.UTF_8);
-    }
+    byte[] keyBytes = resolveKeyBytes(secret);
 
     if (keyBytes.length < 32) {
       throw new IllegalStateException("JWT secret must be at least 32 bytes. Increase app.jwt.secret length.");
@@ -37,6 +30,31 @@ public class JwtService {
 
     this.key = Keys.hmacShaKeyFor(keyBytes);
     this.expirationMs = expirationMs;
+  }
+
+  private static byte[] resolveKeyBytes(String secret) {
+    String s = secret;
+    boolean prefixed = false;
+    if (s.startsWith("base64:")) {
+      s = s.substring("base64:".length());
+      prefixed = true;
+    }
+
+    // If explicitly prefixed, try Base64 then Base64URL; on failure, fall back to raw bytes.
+    if (prefixed) {
+      try {
+        return Decoders.BASE64.decode(s);
+      } catch (DecodingException e1) {
+        try {
+          return Decoders.BASE64URL.decode(s);
+        } catch (DecodingException e2) {
+          // fall through to raw
+        }
+      }
+    }
+
+    // Not prefixed (or decode failed) -> treat as raw text secret
+    return s.getBytes(StandardCharsets.UTF_8);
   }
 
   public String generateToken(String subject, Map<String, Object> claims) {
