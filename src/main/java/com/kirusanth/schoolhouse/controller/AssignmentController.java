@@ -1,5 +1,7 @@
-package com.kirusanth.schoolhouse.assignments;
+package com.kirusanth.schoolhouse.controller;
 
+import com.kirusanth.schoolhouse.repository.AssignmentRepository;
+import com.kirusanth.schoolhouse.entity.Assignment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

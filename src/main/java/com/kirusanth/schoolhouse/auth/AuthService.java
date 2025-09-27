@@ -1,7 +1,7 @@
 package com.kirusanth.schoolhouse.auth;
 
-import com.kirusanth.schoolhouse.user.User;
-import com.kirusanth.schoolhouse.user.UserRepository;
+import com.kirusanth.schoolhouse.entity.User;
+import com.kirusanth.schoolhouse.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

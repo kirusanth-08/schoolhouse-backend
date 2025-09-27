@@ -1,12 +1,12 @@
 package com.kirusanth.schoolhouse.config;
 
-import com.kirusanth.schoolhouse.library.Book;
-import com.kirusanth.schoolhouse.library.BookRepository;
+import com.kirusanth.schoolhouse.entity.Book;
+import com.kirusanth.schoolhouse.repository.BookRepository;
 import com.kirusanth.schoolhouse.library.BookStatus;
-import com.kirusanth.schoolhouse.user.User;
-import com.kirusanth.schoolhouse.user.UserRepository;
-import com.kirusanth.schoolhouse.assignments.Assignment;
-import com.kirusanth.schoolhouse.assignments.AssignmentRepository;
+import com.kirusanth.schoolhouse.entity.User;
+import com.kirusanth.schoolhouse.repository.UserRepository;
+import com.kirusanth.schoolhouse.entity.Assignment;
+import com.kirusanth.schoolhouse.repository.AssignmentRepository;
 import com.kirusanth.schoolhouse.assignments.AssignmentStatus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

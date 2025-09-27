@@ -1,5 +1,6 @@
-package com.kirusanth.schoolhouse.user;
+package com.kirusanth.schoolhouse.repository;
 
+import com.kirusanth.schoolhouse.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,5 +1,6 @@
-package com.kirusanth.schoolhouse.assignments;
+package com.kirusanth.schoolhouse.entity;
 
+import com.kirusanth.schoolhouse.assignments.AssignmentStatus;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;

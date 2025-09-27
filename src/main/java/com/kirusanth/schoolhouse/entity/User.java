@@ -1,4 +1,4 @@
-package com.kirusanth.schoolhouse.user;
+package com.kirusanth.schoolhouse.entity;
 
 import jakarta.persistence.*;
 import java.time.Instant;

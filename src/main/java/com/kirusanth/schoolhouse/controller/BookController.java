@@ -1,5 +1,9 @@
-package com.kirusanth.schoolhouse.library;
+package com.kirusanth.schoolhouse.controller;
 
+import com.kirusanth.schoolhouse.entity.Book;
+import com.kirusanth.schoolhouse.library.BorrowRequest;
+import com.kirusanth.schoolhouse.library.ReminderRequest;
+import com.kirusanth.schoolhouse.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

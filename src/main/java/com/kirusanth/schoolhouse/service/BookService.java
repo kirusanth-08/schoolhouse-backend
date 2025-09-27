@@ -1,5 +1,9 @@
-package com.kirusanth.schoolhouse.library;
+package com.kirusanth.schoolhouse.service;
 
+import com.kirusanth.schoolhouse.entity.Book;
+import com.kirusanth.schoolhouse.library.BookStatus;
+import com.kirusanth.schoolhouse.library.BorrowRequest;
+import com.kirusanth.schoolhouse.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

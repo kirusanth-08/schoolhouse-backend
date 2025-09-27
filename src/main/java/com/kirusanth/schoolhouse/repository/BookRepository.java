@@ -1,5 +1,7 @@
-package com.kirusanth.schoolhouse.library;
+package com.kirusanth.schoolhouse.repository;
 
+import com.kirusanth.schoolhouse.entity.Book;
+import com.kirusanth.schoolhouse.library.BookStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;

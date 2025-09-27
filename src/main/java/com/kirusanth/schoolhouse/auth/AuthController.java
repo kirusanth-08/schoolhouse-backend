@@ -1,6 +1,6 @@
 package com.kirusanth.schoolhouse.auth;
 
-import com.kirusanth.schoolhouse.user.User;
+import com.kirusanth.schoolhouse.entity.User;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

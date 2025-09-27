@@ -1,6 +1,7 @@
-package com.kirusanth.schoolhouse.library;
+package com.kirusanth.schoolhouse.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.kirusanth.schoolhouse.library.BookStatus;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
